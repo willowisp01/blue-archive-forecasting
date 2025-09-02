@@ -1,3 +1,5 @@
 # Ignore temporary Excel files
 *.tmp.xlsx
 ~$*.xlsx
+
+.venv
