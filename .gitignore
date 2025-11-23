@@ -2,5 +2,7 @@
 *.tmp.xlsx
 ~$*.xlsx
 
+*.pyc
+
 .venv
 .vscode/
