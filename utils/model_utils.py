@@ -1,7 +1,9 @@
+from __future__ import annotations
+
 import pandas as pd
 import statsmodels
 
-def drop_columns_resiudal(df: pd.DataFrame) -> pd.DataFrame:
+def drop_columns_residual(df: pd.DataFrame) -> pd.DataFrame:
     '''
     Drop columns that are not needed for residual analysis.
     Does not drop the target column yet (this is needed to make lags later)
@@ -73,6 +75,8 @@ def make_rolling_stats(df: pd.DataFrame, window_size: int) -> pd.DataFrame:
     '''
     df_copy = df.copy()
     # df_copy[f'rolling_mean_{window_size}'] = df_copy['JP'].shift(1).rolling(window=window_size).mean()
+    
+    # shift by 1 to avoid data leakage
     df_copy[f'rolling_std_{window_size}'] = df_copy['JP'].shift(1).rolling(window=window_size).std()
     return df_copy
 
