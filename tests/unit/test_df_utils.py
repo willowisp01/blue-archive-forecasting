@@ -49,7 +49,7 @@ def test_group_into_monthly_count():
             2: pd.to_datetime('2021-03-01 00:00:00'),
             3: pd.to_datetime('2021-04-01 00:00:00'),
             4: pd.to_datetime('2021-05-01 00:00:00')},
-        'JP': {
+        'JP': { # revenue values are not relevant for this test
             0: 1.0,
             1: 2.0,
             2: 3.0,
@@ -115,7 +115,7 @@ def test_group_event_into_monthly_count():
             7: pd.to_datetime('2021-08-01 00:00:00'),
             8: pd.to_datetime('2021-09-01 00:00:00'),
             9: pd.to_datetime('2021-10-01 00:00:00')},
-        'JP': {
+        'JP': { # revenue values are not relevant for this test
             0: 1.0,
             1: 2.0,
             2: 3.0,
