@@ -132,4 +132,20 @@ def test_group_event_into_monthly_count():
 
     result_df = df_utils.group_event_into_monthly_count(original_events_jp, revenue)
     assert result_df['Event Count'].tolist() == [0, 1, 1, 1, 1, 1, 2, 2, 1, 0]
+
+def test_create_fourier_features():
+    dates = pd.date_range(start='2023-01-01', periods=12, freq='MS')
+    df = pd.DataFrame({'Date': dates})
+
+    result_df = df_utils.create_fourier_features(df)
+
+    for i in range(1, 5):
+        assert f'sin({i},freq=YE-DEC)' in result_df.columns
+        assert f'cos({i},freq=YE-DEC)' in result_df.columns
+    
+    assert len(result_df) == len(df)
+    assert result_df.shape[1] == df.shape[1] + 8  # 8 new features added
+
+
+
     

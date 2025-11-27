@@ -3,7 +3,7 @@ from __future__ import annotations
 from sklearn.preprocessing import SplineTransformer
 from sklearn.linear_model import LinearRegression
 from sklearn.pipeline import make_pipeline
-from statsmodels.tsa.deterministic import CalendarFourier, DeterministicProcess
+from statsmodels.tsa.deterministic import DeterministicProcess
 from xgboost import XGBRegressor
 
 import joblib

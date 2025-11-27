@@ -3,6 +3,27 @@ import pandas as pd
 import pandas.testing as pdt
 import utils.model_utils as model_utils
 
+def test_prepare_train_test_split():
+    df = pd.DataFrame(
+        {'Date': pd.date_range(start='2021-01-01', periods=12, freq='MS'),
+        'JP': np.arange(1000, 2200, 100),
+        'Feature1': np.arange(10, 22),
+        'Feature2': np.arange(20, 32)},
+        index=np.arange(12))
+    
+    X_train, y_train, X_test, y_test = model_utils.prepare_train_test_split(df)
+
+    expected_X_train = df.iloc[:-6].drop(columns=['Date', 'JP'])
+    expected_y_train = df.iloc[:-6]['JP']
+    expected_X_test = df.iloc[-6:].drop(columns=['Date', 'JP'])
+    expected_y_test = df.iloc[-6:]['JP']
+
+    pdt.assert_frame_equal(X_train.reset_index(drop=True), expected_X_train.reset_index(drop=True))
+    pdt.assert_series_equal(y_train.reset_index(drop=True), expected_y_train.reset_index(drop=True))
+    pdt.assert_frame_equal(X_test.reset_index(drop=True), expected_X_test.reset_index(drop=True))
+    pdt.assert_series_equal(y_test.reset_index(drop=True), expected_y_test.reset_index(drop=True))
+
+
 def test_drop_columns_residual():
     df = pd.DataFrame(
         {'Date': pd.to_datetime('2021-11-01 00:00:00'),
