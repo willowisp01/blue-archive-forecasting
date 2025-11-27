@@ -1,4 +1,26 @@
 import pandas as pd
+from scipy.signal import periodogram
+from statsmodels.tsa.deterministic import CalendarFourier, DeterministicProcess
+
+def create_fourier_features(revenue):
+    fourier = CalendarFourier(freq="YE", order=4)
+
+    revenue_copy = revenue.copy()
+    revenue_copy = revenue_copy.set_index('Date').asfreq('MS')
+
+    dp = DeterministicProcess(
+        index=revenue_copy.index,
+        constant=False,
+        order=0,
+        seasonal=False,
+        additional_terms=[fourier],
+        drop=True,
+    )
+    X = dp.in_sample()
+    
+    revenue = revenue.merge(X, left_on='Date', right_index=True) # similar to SQL inner join
+
+    return revenue
 
 def group_into_monthly_count(banners: pd.DataFrame, revenue: pd.DataFrame) -> pd.DataFrame:
     '''
