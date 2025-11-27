@@ -12,7 +12,20 @@ import statsmodels
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-def prepare_train_test_split(revenue):
+def prepare_train_test_split(revenue: pd.DataFrame) -> tuple[pd.DataFrame, pd.Series, pd.DataFrame, pd.Series]:
+    '''
+    Creates a train-test split features and targets.
+
+    Parameters
+    ----------
+    revenue : pd.DataFrame
+        The revenue DataFrame.
+
+    Returns
+    -------
+    tuple[pd.DataFrame, pd.Series, pd.DataFrame, pd.Series]
+        A tuple containing the training features, training target, testing features, and testing target.
+    '''
     revenue = revenue.copy()
 
     revenue_train = revenue.iloc[:-6] # everything before 6 months for training
@@ -104,8 +117,25 @@ def make_rolling_stats(df: pd.DataFrame, window_size: int) -> pd.DataFrame:
     return df_copy
 
 
-def fit_spline_trend_model(y_train, window_size=7, plot=True, save=True):
+def fit_spline_trend_model(y_train: pd.Series, window_size=7, plot=True, save=True):
+    '''
+    Fit a spline trend model to the training target data.
 
+    Parameters
+    ----------
+    y_train : pd.Series
+        The training target data.
+    window_size : int, optional
+        The window size for calculating the rolling mean, by default 7.
+    plot : bool, optional
+        Whether to plot the trend model against actual data, by default True.
+    save : bool, optional
+        Whether to save the trend model to disk, by default True.
+
+    Returns
+    -------
+    The fitted trend model.
+    '''
     linear_regressor = LinearRegression()
 
     trend = y_train.rolling(window=window_size, center=True).mean()
@@ -136,7 +166,20 @@ def fit_spline_trend_model(y_train, window_size=7, plot=True, save=True):
 
     return trend_model
 
-def create_XGB_features(revenue):
+def create_XGB_features(revenue: pd.DataFrame) -> pd.DataFrame:
+    '''
+    Creates additional features for the XGB residual model.
+
+    Parameters
+    ----------
+    revenue : pd.DataFrame
+        The revenue DataFrame.
+
+    Returns
+    -------
+    pd.DataFrame
+        The DataFrame with additional features for XGB model.
+    '''
     revenue = revenue.copy()
 
     # Drop uninformative columns
@@ -155,7 +198,24 @@ def create_XGB_features(revenue):
     return revenue
 
 
-def fit_XGB_residual_model(X_train, y_train, save=True):
+def fit_XGB_residual_model(X_train: pd.DataFrame, y_train: pd.Series, save=True):
+    '''
+    Creates and fits the XGB residual model.
+
+    Parameters
+    ----------
+    X_train : pd.DataFrame
+        The training features for the residual model.
+    y_train : pd.Series
+        The training target for the residual model.
+    save : bool, optional
+        Whether to save the model to disk, by default True
+
+    Returns
+    -------
+    XGBRegressor
+        The fit XGB model.
+    '''
 
     xgb_model = XGBRegressor(
         n_estimators=40,

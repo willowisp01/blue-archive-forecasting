@@ -1,8 +1,20 @@
 import pandas as pd
-from scipy.signal import periodogram
 from statsmodels.tsa.deterministic import CalendarFourier, DeterministicProcess
 
 def create_fourier_features(revenue):
+    '''
+    Creates fourier features for seasonality, and merges them into the revenue DataFrame.
+
+    Parameters
+    ----------
+    revenue : pd.DataFrame
+        The revenue DataFrame.
+
+    Returns
+    -------
+    pd.DataFrame
+        The revenue DataFrame with added fourier features.
+    '''
     fourier = CalendarFourier(freq="YE", order=4)
 
     revenue_copy = revenue.copy()
