@@ -174,7 +174,7 @@ def story_plotter(ax: matplotlib.axes.Axes, event_df: pd.DataFrame, label: bool 
     '''
 
     labelled_stories = set()
-    color_dict = pd.read_pickle('./data/story_color_dict.pkl')
+    color_dict = pd.read_pickle('./data/fixtures/story_color_dict.pkl')
     
     for _, row in event_df.iterrows():
         release_date = pd.to_datetime(row['Release Date'])
