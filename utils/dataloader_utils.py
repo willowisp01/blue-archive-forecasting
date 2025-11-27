@@ -10,8 +10,8 @@ def load_revenue() -> pd.DataFrame:
     pd.DataFrame
         The revenue dataframe.
     '''
-    reddit_data = pd.read_excel('./data/reddit-monthly-revenue-report.xlsx').iloc[:, :3]
-    ennead_data = pd.read_excel('./data/revenue-ennead-cc-revenue-report.xlsx')
+    reddit_data = pd.read_excel('./data/reddit-monthly-revenue-report.xlsx', engine='openpyxl').iloc[:, :3]
+    ennead_data = pd.read_excel('./data/revenue-ennead-cc-revenue-report.xlsx', engine='openpyxl')
     revenue = pd.concat([reddit_data, ennead_data], ignore_index=True)
     return revenue
 
