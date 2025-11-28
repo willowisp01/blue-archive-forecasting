@@ -16,6 +16,10 @@ Using Anaconda, set up a conda environment using the `environment.yml` file. Aft
 
 If any API cannot be reached, or the data is invalid for whatever reason, a serialized record of the API data will be loaded instead (see `*.pkl` files.) For reproducability, trained models have also be serialized (see `trend_model.joblib` and `xgb_residual_model.joblib`).
 
+## How to Test 
+
+After setting up and activating the conda environment, you can run the command `pytest` from the root directory of this project. It should activate all tests. 
+
 ## Summary of Results
 
 The hybrid model predicted a 6 month forecast accurately (with an outlier of the first month forecast). The MAE was 1.2 million excluding that forecast, about 6% of the maximum observed monthly revenue of 19 million. The model also achieved directional accuracy of 100% (i.e. the model correctly predicts whether revenue will go up or down) for that forecast of 6 months.
