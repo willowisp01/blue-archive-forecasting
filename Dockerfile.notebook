@@ -1,0 +1,21 @@
+FROM continuumio/miniconda3
+
+WORKDIR /app
+
+COPY environment.yml .
+RUN conda env create -f environment.yml
+
+# Install Jupyter in the environment
+RUN conda run -n ba-forecasting pip install notebook
+
+# Get fonts
+RUN apt-get update && \
+    apt-get install -y fonts-noto-cjk fonts-dejavu && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY . .
+
+EXPOSE 8888
+
+# Use conda run to launch Jupyter Notebook in the environment
+CMD ["conda", "run", "--no-capture-output", "-n", "ba-forecasting", "jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root", "--NotebookApp.token=''"]
