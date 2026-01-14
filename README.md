@@ -31,7 +31,7 @@ To use the API, type in the following commands from within the `ba-forecasting` 
 
 ## How to Run (Docker)
 
-First, clone this repo.
+First, clone this repo, and ensure you have Docker installed.
 
 Simply input this command:
 * `docker-compose up --build`
