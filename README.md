@@ -16,7 +16,7 @@ This is the suggested run option for maximum compatibility.
 First, clone this repo, and ensure you have Docker installed.
 
 Simply input this command:
-* `docker-compose up --build`
+* `docker-compose up --build` (you might have to use sudo)
 
 This will download pre-built images from Docker Hub and do the necessary setup.
    
