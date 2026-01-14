@@ -28,6 +28,9 @@ To view and run the `analysis.ipynb` notebook, type http://127.0.0.1:8888 into y
 
 ## How to Run (Self-Setup)
 
+Important Note: you might have to install the fonts yourself if you do the self-setup method.
+In particular, for Linux we have `sudo apt install fonts-noto-cjk`.
+
 First, clone this repo.
 
 Using Anaconda, set up a conda environment using the `environment.yml` file. After which, it should be as simple as running all cells in the notebook `analysis.ipynb`. Doing that will 
