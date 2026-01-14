@@ -1,0 +1,30 @@
+services:
+  ba-base:
+    build:
+      context: .
+      dockerfile: Dockerfile.base
+    image: ba-forecasting-base:latest
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    depends_on:
+      - ba-base
+    ports:
+      - "8000:8000"
+    image: ba-forecasting-api:latest
+
+  notebook:
+    build:
+      context: .
+      dockerfile: Dockerfile.notebook
+    depends_on:
+      - ba-base
+    ports:
+      - "8888:8888"
+    image: ba-forecasting-notebook:latest
+
+# To build and run the services locally, use:
+# docker-compose -f docker-compose.local.yml build ba-base
+# docker-compose -f docker-compose.local.yml up --build

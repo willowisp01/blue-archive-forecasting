@@ -1,0 +1,14 @@
+services:
+  api:
+    image: willowisp01/ba-forecasting-api:latest
+    ports:
+      - "8000:8000"
+
+  notebook:
+    image: willowisp01/ba-forecasting-notebook:latest
+    ports:
+      - "8888:8888"
+
+# This pulls and runs the pre-built images from Docker Hub.
+# To run locally, use docker-compose.local.yml instead.
+

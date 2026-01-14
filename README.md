@@ -22,26 +22,23 @@ The 6-month forecast created by my model can also be obtained through an API.
 
 `six_month_forecast`: gives a six month forecast of revenue based on last available existing data.
 
-To use the API, type in the following commands from within the conda environment: 
+To use the API, type in the following commands from within the `ba-forecasting` conda environment: 
 * `uvicorn api:app --reload --host 127.0.0.1 --port 8000`
 * `curl http://127.0.0.1:8000/six_month_forecast`
-(or you can just type `http://127.0.0.1:8000/six_month_forecast` into your web browser too.)
-
+(or you can just type http://127.0.0.1:8000/six_month_forecast into your web browser too.)
 
 ## How to Run (Docker)
 
-Simply download the images:
+Simply input this command:
+* `docker-compose up --build`
 
-* `docker pull willowisp01/ba-forecasting-api`
-* `docker pull willowisp01/ba-forecasting-notebook`
-
-Then, run the images as follows:
-* `docker run -p 8000:8000 willowisp01/ba-forecasting-api`
-* `docker run -p 8888:8888 willowisp01/ba-forecasting-notebook`
+This will download pre-built images from Docker Hub and do the necessary setup.
    
 To use the API, type in the following commands from within the conda environment: 
 * `curl http://127.0.0.1:8000/six_month_forecast`
-(or you can just type `http://127.0.0.1:8000/six_month_forecast` into your web browser too.)
+(or you can just type http://127.0.0.1:8000/six_month_forecast into your web browser too.)
+
+To view and run the `analysis.ipynb` notebook, type http://127.0.0.1:8888 into your browser.
 
 
 ## How to Test 
