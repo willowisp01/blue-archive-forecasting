@@ -1,0 +1,13 @@
+# base image with conda 
+
+FROM continuumio/miniconda3
+
+WORKDIR /base
+
+COPY environment.yml .
+
+RUN conda env create -f environment.yml
+
+SHELL ["conda", "run", "-n", "ba-forecasting", "/bin/bash", "-c"]
+
+CMD ["bash"]

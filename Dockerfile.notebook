@@ -1,12 +1,9 @@
-FROM continuumio/miniconda3
+FROM ba-forecasting-base:latest
 
 WORKDIR /app
 
-COPY environment.yml .
-RUN conda env create -f environment.yml
-
 # Install Jupyter in the environment
-RUN conda run -n ba-forecasting pip install notebook
+RUN pip install notebook
 
 # Get fonts
 RUN apt-get update && \
