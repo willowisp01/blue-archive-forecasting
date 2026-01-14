@@ -10,6 +10,8 @@ There are 2 features of this project: a Jupyter notebook that predicts the reven
 
 ## How to Run (Self-Setup)
 
+First, clone this repo.
+
 Using Anaconda, set up a conda environment using the `environment.yml` file. After which, it should be as simple as running all cells in the notebook `analysis.ipynb`. Doing that will 
 * load in data from the API
 * format raw data 
@@ -28,6 +30,8 @@ To use the API, type in the following commands from within the `ba-forecasting` 
 (or you can just type http://127.0.0.1:8000/six_month_forecast into your web browser too.)
 
 ## How to Run (Docker)
+
+First, clone this repo.
 
 Simply input this command:
 * `docker-compose up --build`
