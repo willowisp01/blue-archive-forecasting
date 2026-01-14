@@ -8,6 +8,24 @@ Data from various fan sites, online forums, and unofficial APIs were used to col
 
 There are 2 features of this project: a Jupyter notebook that predicts the revenue for the next 6 months, and an API that simply returns that 6-month forecast.
 
+
+## How to Run (Docker)
+
+This is the suggested run option for maximum compatibility. 
+
+First, clone this repo, and ensure you have Docker installed.
+
+Simply input this command:
+* `docker-compose up --build`
+
+This will download pre-built images from Docker Hub and do the necessary setup.
+   
+To use the API, type in the following commands from within the conda environment: 
+* `curl http://127.0.0.1:8000/six_month_forecast`
+(or you can just type http://127.0.0.1:8000/six_month_forecast into your web browser too.)
+
+To view and run the `analysis.ipynb` notebook, type http://127.0.0.1:8888 into your browser.
+
 ## How to Run (Self-Setup)
 
 First, clone this repo.
@@ -28,22 +46,6 @@ To use the API, type in the following commands from within the `ba-forecasting` 
 * `uvicorn api:app --reload --host 127.0.0.1 --port 8000`
 * `curl http://127.0.0.1:8000/six_month_forecast`
 (or you can just type http://127.0.0.1:8000/six_month_forecast into your web browser too.)
-
-## How to Run (Docker)
-
-First, clone this repo, and ensure you have Docker installed.
-
-Simply input this command:
-* `docker-compose up --build`
-
-This will download pre-built images from Docker Hub and do the necessary setup.
-   
-To use the API, type in the following commands from within the conda environment: 
-* `curl http://127.0.0.1:8000/six_month_forecast`
-(or you can just type http://127.0.0.1:8000/six_month_forecast into your web browser too.)
-
-To view and run the `analysis.ipynb` notebook, type http://127.0.0.1:8888 into your browser.
-
 
 ## How to Test 
 

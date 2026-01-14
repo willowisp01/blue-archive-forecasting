@@ -1,11 +1,13 @@
 services:
   api:
     image: willowisp01/ba-forecasting-api:latest
+    platform: linux/amd64 # for mac compatibility
     ports:
       - "8000:8000"
 
   notebook:
     image: willowisp01/ba-forecasting-notebook:latest
+    platform: linux/amd64   
     ports:
       - "8888:8888"
 
